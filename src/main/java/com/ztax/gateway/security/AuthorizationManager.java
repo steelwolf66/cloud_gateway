@@ -50,7 +50,7 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
 
         PathMatcher pathMatcher = new AntPathMatcher();
 
-        //todo 非管理端路径无需鉴权直接放行
+        //todo 非管理端路径无需鉴权直接放行 后续代码都是鉴权过程，暂时权限设计没有完成
         if (!pathMatcher.match(AuthConstants.ADMIN_URL_PATTERN, currentRequestPath)) {
             log.info("请求无需鉴权，currentRequestPath={}", currentRequestPath);
             return Mono.just(new AuthorizationDecision(true));
