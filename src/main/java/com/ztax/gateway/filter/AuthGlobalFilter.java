@@ -42,7 +42,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
         ServerHttpResponse response = exchange.getResponse();
 
 
-        // 无token放行，
+        // 无token放行，已在Security认证其中校验过了
         String token = exchange.getRequest().getHeaders().getFirst(AuthConstants.JWT_TOKEN_HEADER);
         if (StrUtil.isBlank(token)) {
             return chain.filter(exchange);
