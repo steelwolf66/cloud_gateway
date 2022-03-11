@@ -1,8 +1,8 @@
 package com.ztax.gateway.utils;
 
 import cn.hutool.json.JSONUtil;
-import com.ztax.gateway.constants.ResultCode;
-import com.ztax.gateway.entity.Result;
+import com.ztax.gateway.result.ResultCode;
+import com.ztax.gateway.result.Result;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.io.buffer.DataBufferUtils;
 import org.springframework.http.HttpHeaders;

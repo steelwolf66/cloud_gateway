@@ -1,4 +1,4 @@
-package com.ztax.gateway.constants;
+package com.ztax.gateway.result;
 
 public interface IResultCode {
 

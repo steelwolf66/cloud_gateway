@@ -2,7 +2,7 @@ package com.ztax.gateway.config;
 
 import cn.hutool.core.util.ArrayUtil;
 import com.ztax.gateway.constants.AuthConstants;
-import com.ztax.gateway.constants.ResultCode;
+import com.ztax.gateway.result.ResultCode;
 import com.ztax.gateway.security.AuthorizationManager;
 import com.ztax.gateway.utils.WebUtils;
 import lombok.AllArgsConstructor;

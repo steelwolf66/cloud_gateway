@@ -5,7 +5,7 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.nimbusds.jose.JWSObject;
 import com.ztax.gateway.constants.AuthConstants;
-import com.ztax.gateway.constants.ResultCode;
+import com.ztax.gateway.result.ResultCode;
 import com.ztax.gateway.redis.utils.RedisUtils;
 import com.ztax.gateway.utils.WebUtils;
 import lombok.SneakyThrows;

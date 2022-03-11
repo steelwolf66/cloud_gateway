@@ -1,8 +1,6 @@
-package com.ztax.gateway.entity;
+package com.ztax.gateway.result;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.ztax.gateway.constants.IResultCode;
-import com.ztax.gateway.constants.ResultCode;
 import lombok.Data;
 
 import java.io.Serializable;
