@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClassUtils {
-    private static final List<String> pubColumnGetter = new ArrayList(16);
-    private static final List<String> pubColumnSetter;
 
     private ClassUtils() {
     }
@@ -129,7 +127,7 @@ public class ClassUtils {
 
         for (int var5 = 0; var5 < var4; ++var5) {
             Method method = var3[var5];
-            if (!"getClass".equals(method.getName()) && method.getParameterCount() <= 0 && (method.getName().startsWith("get") || method.getName().startsWith("is")) && (!excludedPubColumn || !pubColumnGetter.contains(method.getName()))) {
+            if (!"getClass".equals(method.getName()) && method.getParameterCount() <= 0 && (method.getName().startsWith("get") || method.getName().startsWith("is")) && (!excludedPubColumn)) {
                 answer.add(method);
             }
         }
@@ -144,45 +142,11 @@ public class ClassUtils {
 
         for (int var5 = 0; var5 < var4; ++var5) {
             Method method = var3[var5];
-            if (method.getParameterCount() == 1 && method.getName().startsWith("set") && (!excludedPubColumn || !pubColumnSetter.contains(method.getName()))) {
+            if (method.getParameterCount() == 1 && method.getName().startsWith("set") && (!excludedPubColumn)) {
                 answer.add(method);
             }
         }
 
         return answer;
-    }
-
-    static {
-        pubColumnGetter.add("getPageNo");
-        pubColumnGetter.add("getPageSize");
-        pubColumnGetter.add("getOrderBy");
-        pubColumnGetter.add("getNonEqualWhere");
-        pubColumnGetter.add("getOrWhere");
-        pubColumnGetter.add("getPubColumnWhere");
-        pubColumnGetter.add("getConfiguredNonEqualWhere");
-        pubColumnGetter.add("getConfiguredOrWhere");
-        pubColumnGetter.add("getCreatorId");
-        pubColumnGetter.add("getCreateTime");
-        pubColumnGetter.add("getDataOrgId");
-        pubColumnGetter.add("getUpdateUserId");
-        pubColumnGetter.add("getUpdateTime");
-        pubColumnGetter.add("getDeleteUserId");
-        pubColumnGetter.add("getDeleteFlag");
-        pubColumnGetter.add("getDeleteTime");
-        pubColumnSetter = new ArrayList(16);
-        pubColumnSetter.add("setPageNo");
-        pubColumnSetter.add("setPageSize");
-        pubColumnSetter.add("setOrderBy");
-        pubColumnSetter.add("setNonEqualWhere");
-        pubColumnSetter.add("setOrWhere");
-        pubColumnSetter.add("setPubColumnWhere");
-        pubColumnSetter.add("setCreatorId");
-        pubColumnSetter.add("setCreateTime");
-        pubColumnSetter.add("setDataOrgId");
-        pubColumnSetter.add("setUpdateUserId");
-        pubColumnSetter.add("setUpdateTime");
-        pubColumnSetter.add("setDeleteUserId");
-        pubColumnSetter.add("setDeleteFlag");
-        pubColumnSetter.add("setDeleteTime");
     }
 }
