@@ -50,8 +50,13 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
 
         PathMatcher pathMatcher = new AntPathMatcher();
 
+//        //todo 非管理端路径无需鉴权直接放行 后续代码都是鉴权过程，暂时权限设计没有完成
+//        if (!pathMatcher.match(AuthConstants.ADMIN_URL_PATTERN, currentRequestPath)) {
+//            log.info("请求无需鉴权，currentRequestPath={}", currentRequestPath);
+//            return Mono.just(new AuthorizationDecision(true));
+//        }
         //todo 非管理端路径无需鉴权直接放行 后续代码都是鉴权过程，暂时权限设计没有完成
-        if (!pathMatcher.match(AuthConstants.ADMIN_URL_PATTERN, currentRequestPath)) {
+        if (pathMatcher.match("POST_/iam/oauth/token", currentRequestPath)) {
             log.info("请求无需鉴权，currentRequestPath={}", currentRequestPath);
             return Mono.just(new AuthorizationDecision(true));
         }
@@ -69,12 +74,13 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
         Iterator<Object> iterator = permissionRoles.keySet().iterator();
         // 请求路径匹配到的资源需要的角色权限集合authorities统计
         Set<String> authorities = new HashSet<>();
-        while (iterator.hasNext()) {
-            String pattern = (String) iterator.next();
-            if (pathMatcher.match(pattern, currentRequestPath)) {
-                authorities.addAll(Convert.toList(String.class, permissionRoles.get(pattern)));
-            }
-        }
+        authorities.add("ROLE_USER");
+//        while (iterator.hasNext()) {
+//            String pattern = (String) iterator.next();
+//            if (pathMatcher.match(pattern, currentRequestPath)) {
+//                authorities.addAll(Convert.toList(String.class, permissionRoles.get(pattern)));
+//            }
+//        }
         log.info("require authorities:{}", authorities);
 
         Mono<AuthorizationDecision> authorizationDecisionMono = mono
@@ -82,14 +88,19 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
                 .flatMapIterable(Authentication::getAuthorities)
                 .map(GrantedAuthority::getAuthority)
                 .any(roleId -> {
+
                     // roleId是请求用户的角色(格式:ROLE_{roleId})，authorities是请求资源所需要角色的集合
                     log.info("访问路径：{}", currentRequestPath);
                     log.info("用户角色信息：{}", roleId);
                     log.info("资源需要权限authorities：{}", authorities);
                     return authorities.contains(roleId);
+
                 })
+
                 .map(AuthorizationDecision::new)
+                //todo 默认应设置为false
                 .defaultIfEmpty(new AuthorizationDecision(false));
+
         return authorizationDecisionMono;
     }
 }

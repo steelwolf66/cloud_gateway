@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.ztax</groupId>
     <artifactId>gateway</artifactId>
-    <version>0.0.1</version>
+    <version>latest</version>
     <name>gateway</name>
     <description>Demo gateway spring cloud</description>
 
@@ -22,20 +22,9 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <spring-boot-admin.version>2.5.5</spring-boot-admin.version>
-        <hutool.version>5.7.18</hutool.version>
-        <dynamic-ds.version>3.4.1</dynamic-ds.version>
-        <captcha.version>2.2.1</captcha.version>
         <velocity.version>1.7</velocity.version>
         <configuration.version>1.10</configuration.version>
         <nacos.version>2.0.3</nacos.version>
-        <jasypt.version>2.1.0</jasypt.version>
-        <swagger.fox.version>3.0.0</swagger.fox.version>
-        <xxl-job.version>2.3.0</xxl-job.version>
-        <docker.plugin.version>0.32.0</docker.plugin.version>
-        <docker.host>http://192.168.0.100:2375</docker.host>
-        <docker.registry>192.168.0.100</docker.registry>
-        <docker.username>username</docker.username>
-        <docker.password>password</docker.password>
         <git.commit.plugin>4.9.9</git.commit.plugin>
         <spring.checkstyle.plugin>0.0.29</spring.checkstyle.plugin>
     </properties>
@@ -112,19 +101,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
-        <!-- 本地基础包 -->
-<!--        <dependency>-->
-<!--            <groupId>com.ztax</groupId>-->
-<!--            <artifactId>cloud-common</artifactId>-->
-<!--            <version>0.0.2</version>-->
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>org.springframework.boot</groupId>-->
-<!--                    <artifactId>spring-boot-starter-web</artifactId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
-<!--        </dependency>-->
-
         <!-- hutool -->
         <dependency>
             <groupId>cn.hutool</groupId>

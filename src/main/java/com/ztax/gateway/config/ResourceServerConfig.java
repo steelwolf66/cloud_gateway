@@ -80,7 +80,7 @@ public class ResourceServerConfig {
     }
 
     /**
-     * token无效或者已过期自定义响应
+     * token认证失败时的自定义异常
      */
     @Bean
     ServerAuthenticationEntryPoint authenticationEntryPoint() {
