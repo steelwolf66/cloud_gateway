@@ -98,7 +98,7 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
                 })
 
                 .map(AuthorizationDecision::new)
-                //todo 默认应设置为false
+                //默认应设置为false
                 .defaultIfEmpty(new AuthorizationDecision(false));
 
         return authorizationDecisionMono;
